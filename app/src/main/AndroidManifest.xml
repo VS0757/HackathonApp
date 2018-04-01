@@ -23,15 +23,7 @@
         </activity>
         <activity android:name=".TeacherActivity" />
         <activity android:name=".StudentActivity" />
-        <activity
-            android:name=".BlogActivity"
-            android:label="@string/title_activity_blog"
-            android:parentActivityName=".StudentActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.prepa.hackathonapp.StudentActivity" />
-        </activity>
+        <activity android:name=".BlogActivity"></activity>
     </application>
 
 </manifest>
