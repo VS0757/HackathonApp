@@ -21,7 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TeacherActivity"></activity>
+        <activity android:name=".TeacherActivity" />
+        <activity android:name=".StudentActivity" />
+        <activity
+            android:name=".BlogActivity"
+            android:label="@string/title_activity_blog"
+            android:parentActivityName=".StudentActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prepa.hackathonapp.StudentActivity" />
+        </activity>
     </application>
 
 </manifest>

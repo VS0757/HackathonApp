@@ -23,5 +23,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, TeacherActivity.class));
             }
         });
+
+        b1 = (Button) findViewById(R.id.Student);
+
+        b1.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, StudentActivity.class));
+            }
+        });
     }
 }
