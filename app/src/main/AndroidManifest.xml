@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -23,7 +24,8 @@
         </activity>
         <activity android:name=".TeacherActivity" />
         <activity android:name=".StudentActivity" />
-        <activity android:name=".BlogActivity"></activity>
+        <activity android:name=".BlogActivity" />
+        <activity android:name=".Bullying"></activity>
     </application>
 
 </manifest>
