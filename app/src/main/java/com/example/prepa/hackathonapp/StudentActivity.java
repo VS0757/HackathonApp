@@ -39,9 +39,6 @@ public class StudentActivity extends AppCompatActivity {
                             .getDisplayName(),
                     Toast.LENGTH_LONG)
                     .show();
-
-            // Load chat room contents
-//            displayChatMessages();
         }
 
         ImageButton b1 = (ImageButton) findViewById(R.id.Blog);
