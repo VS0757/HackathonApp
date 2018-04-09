@@ -25,7 +25,6 @@
         <activity android:name=".TeacherActivity" />
         <activity android:name=".StudentActivity" />
         <activity android:name=".BlogActivity" />
-        <activity android:name=".Bullying"></activity>
     </application>
 
 </manifest>

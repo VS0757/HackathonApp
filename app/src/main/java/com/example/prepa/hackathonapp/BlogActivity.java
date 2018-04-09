@@ -1,27 +1,71 @@
 package com.example.prepa.hackathonapp;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 public class BlogActivity extends AppCompatActivity {
+    private FirebaseListAdapter<ChatMessage> adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_blog);
 
+        FloatingActionButton fab =
+                (FloatingActionButton) findViewById(R.id.fab);
 
-        Button b1 = (Button) findViewById(R.id.b1);
+        displayChatMessages();
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText input = (EditText) findViewById(R.id.input);
 
-        b1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                startActivity(new Intent(BlogActivity.this, Bullying.class));
+                FirebaseDatabase.getInstance()
+                        .getReference()
+                        .push()
+                        .setValue(new ChatMessage(input.getText().toString(), "Bullying", FirebaseAuth.getInstance().getCurrentUser().getDisplayName())
+                        );
+
+                input.setText("");
             }
         });
+    }
+
+    private void displayChatMessages()
+    {
+        ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
+
+        adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
+                R.layout.messy, FirebaseDatabase.getInstance().getReference()) {
+            @Override
+            protected void populateView(View v, ChatMessage model, int position) {
+                TextView messageText = (TextView) v.findViewById(R.id.message_text);
+                TextView messageUser = (TextView) v.findViewById(R.id.message_user);
+                TextView messageTime = (TextView) v.findViewById(R.id.message_time);
+
+                messageText.setText(model.getMessageText());
+                messageUser.setText(model.getMessageUser());
+                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
+                        model.getMessageTime()));
+            }
+        };
+
+        listOfMessages.setAdapter(adapter);
     }
 }
