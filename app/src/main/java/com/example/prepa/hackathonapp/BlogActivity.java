@@ -17,9 +17,8 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-
+//Has lots of blog buttons(different topics) to click on and open about to talk about
 public class BlogActivity extends AppCompatActivity {
-    private FirebaseListAdapter<ChatMessage> adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,45 +26,19 @@ public class BlogActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_blog);
 
-        FloatingActionButton fab =
-                (FloatingActionButton) findViewById(R.id.fab);
+        Button b1 = (Button) findViewById(R.id.Bullying);
 
-        displayChatMessages();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText input = (EditText) findViewById(R.id.input);
-
-                FirebaseDatabase.getInstance()
-                        .getReference()
-                        .push()
-                        .setValue(new ChatMessage(input.getText().toString(), "Bullying", FirebaseAuth.getInstance().getCurrentUser().getDisplayName())
-                        );
-
-                input.setText("");
+        b1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(BlogActivity.this, Bullying.class));
             }
         });
-    }
+        Button b2 = (Button) findViewById(R.id.Pollution);
 
-    private void displayChatMessages()
-    {
-        ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
-
-        adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
-                R.layout.messy, FirebaseDatabase.getInstance().getReference()) {
-            @Override
-            protected void populateView(View v, ChatMessage model, int position) {
-                TextView messageText = (TextView) v.findViewById(R.id.message_text);
-                TextView messageUser = (TextView) v.findViewById(R.id.message_user);
-                TextView messageTime = (TextView) v.findViewById(R.id.message_time);
-
-                messageText.setText(model.getMessageText());
-                messageUser.setText(model.getMessageUser());
-                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
-                        model.getMessageTime()));
+        b2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(BlogActivity.this, Pollution.class));
             }
-        };
-
-        listOfMessages.setAdapter(adapter);
+        });
     }
 }

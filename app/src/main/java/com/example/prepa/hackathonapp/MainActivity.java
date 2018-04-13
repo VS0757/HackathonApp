@@ -18,10 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 //has two buttons, one teacher, one student, and opens to another activity whatever clicked
 public class MainActivity extends AppCompatActivity {
     private int SIGN_IN_REQUEST_CODE = 123;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Button b1 = (Button) findViewById(R.id.Teacher);
 
         b1.setOnClickListener(new View.OnClickListener() {

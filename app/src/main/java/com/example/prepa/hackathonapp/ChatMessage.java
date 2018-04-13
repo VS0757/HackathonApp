@@ -1,16 +1,16 @@
 package com.example.prepa.hackathonapp;
 
 import java.util.Date;
-
+//Chat Message class
 public class ChatMessage {
 
     private String messageText;
     private String messageUser;
     private long messageTime;
 
-    public ChatMessage(String messageText, String setter, String messageUser) {
+    public ChatMessage(String messageText, String Helper, String messageUser) {
         this.messageText = messageText;
-        this.messageUser = "Anonymous";
+        this.messageUser = Helper;
         messageTime = new Date().getTime();
     }
 
